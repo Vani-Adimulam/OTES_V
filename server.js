@@ -31,6 +31,7 @@ const testresult = require("./Loggers/testresult");
 const TestStatus = require("./Loggers/testStatus");
 const getTest = require("./Loggers/getTest");
 const evaluated = require("./Loggers/Evaluationlog");
+const nodemailer =require("nodemailer")
 
 const getMongoDBUrl = () => {
   const databaseName = process.env.NODE_ENV === 'prod' ? 'prod' : 'dev';
@@ -783,6 +784,82 @@ app.post('/evaluator/decide', async (req, res) => {
   return res.status(200).json({ message: 'Decision processed successfully' });
 });
 
+
+///Send OTP to the Users for reset password : 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+      user: "atsapp23@gmail.com",
+      pass: "espgvmcnayykcgbd"
+  }
+})
+
+const generateOTP = ()=>{
+      //0-9 6 length password 
+      let otp =''
+      let length = 6
+      for(let i=0; i < length ; i++){
+          const digit = Math.floor(Math.random()*10);
+          otp += digit.toString()
+      }
+      return otp;
+}
+
+
+//For sending OTPs : 
+
+app.post("/user/otp/send/:email", async (req, res) => {
+
+  const { email} = req.params
+  const mailOptions = {
+      from: "TES-APP <atsapp23@gmail.com>",
+      to: email,
+      subject: `OTP for Forgot password.`,
+      html: `
+      <p>Hi ,</p>
+      <p>Your ONE-TIME-PASSWORD(OTP) is ${generateOTP()} </p>
+      `
+  }
+  transporter.sendMail(mailOptions, async (err, info) => {
+      if (err) {
+          res.send(err.message)
+      } else {
+          res.json({msg: "Email sent to user successfully.",gen_otp:generateOTP()})
+      }
+  })
+})
+
+//For update the passwords : 
+app.post("/updatePassword/user/:email", async (req, res) => {
+  try {
+    const { newPassword } = req.body;
+    const {email} =req.params
+    // Generate a salt
+    const salt = await bcrypt.genSalt(10);
+
+    // Hash the new password with the salt
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    // Find the evaluator by email
+    const evaluator = await Evaluator.findOne({ email });
+    console.log(evaluator)
+
+    if (!evaluator) {
+      return res.status(404).send("Evaluator not found");
+    }
+
+    // Update the password for the found evaluator
+    evaluator.password = hashedPassword;
+
+    // Save the updated evaluator to the database
+    await evaluator.save();
+
+    return res.send("Password updated successfully");
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Server error");
+  }
+});
 
 
 

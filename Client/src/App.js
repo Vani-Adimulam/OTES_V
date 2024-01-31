@@ -21,7 +21,13 @@ import AddQuestions from "./AddQuestions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PendingApprovals from "./PendingApprovals";
+<<<<<<< HEAD
 import '@fortawesome/fontawesome-free/css/all.min.css';
+=======
+import ForgotPassword from "./ForgotPassword";
+import VerifyOTP from "./VerifyOTP";
+import ResetPassword from "./ResetPassword";
+>>>>>>> af024e971f197a6dfb465387c6b2f66469067c9e
 export const store = createContext();
 
 function App() {
@@ -36,6 +42,9 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/Login" element={<LogIn/>} />
             <Route path="/login" element={<EvaluatorForm />} />
+            <Route path ="/forgot-password" element ={<ForgotPassword/>} />
+            <Route path="/verify-otp" element={<VerifyOTP/>}/>
+            <Route path="/reset-password" element ={<ResetPassword/>}/>
             <Route path="/myprofiledashboard" element={<Myprofile />} />
             <Route path="/pendingApprovals" element={<PendingApprovals />} />
             <Route path="/CandidateForm" element={<CandidateForm />} />

@@ -28,7 +28,12 @@
     "multer": "^1.4.5-lts.1",
     "natural": "^6.2.0",
     "node-sass": "^8.0.0",
+<<<<<<< HEAD
     "nodemon": "^3.0.3",
+=======
+    "nodemailer": "^6.9.8",
+    "nodemon": "^2.0.22",
+>>>>>>> af024e971f197a6dfb465387c6b2f66469067c9e
     "path": "^0.12.7",
     "react-js-pagination": "^3.0.2",
     "react-modal": "^3.16.1",

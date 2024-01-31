@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from 'react-toastify'
 import { store } from "./App.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 import { BASE_URL } from "./Service/helper.js";
 
@@ -85,9 +85,10 @@ const EvaluatorForm = () => {
                     {errorMessage}
                   </div>
                 )}
+                
                 <div className="text-center">
                   <button className="cta">
-                    <span className="hover-underline-animation">Login</span>
+                   <button className="btn btn-light"> <span className="hover-underline-animation">Login</span></button>
                     <svg
                       viewBox="0 0 46 16"
                       height="10"
@@ -104,8 +105,13 @@ const EvaluatorForm = () => {
                   </button>
                   
                 </div>
-                
+                <hr/>
+                <div style={{textAlign:"center",padding:"10px"}}>
+                  <Link to="/forgot-password" >Forgotten password?</Link>
+                  <br/>
+                </div>
               </form>
+              
             </div>
           </div>
         </div>
