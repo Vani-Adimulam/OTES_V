@@ -5,6 +5,7 @@ import { BASE_URL } from './Service/helper'
 import { toast } from 'react-toastify'
 
 const ForgotPassword = () => {
+    console.log("hello world")
     const [email, setEmail] = useState("")
     const [loading,setLoading] =useState(false)
     const navigate = useNavigate()
