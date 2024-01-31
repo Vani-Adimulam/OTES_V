@@ -32,3 +32,6 @@
 {"level":"info","message":"Evaluation is done - triggered updateTestResult/:email API - posted the result in MongoDB database","timestamp":"2023-07-22 11:21:37"}
 {"level":"info","message":"Evaluation is done - triggered updateTestResult/:email API - posted the result in MongoDB database","timestamp":"2023-07-22 11:22:03"}
 >>>>>>> Stashed changes
+{"level":"info","message":"Evaluation is done - triggered updateTestResult/:email API - posted the result in MongoDB database","timestamp":"2024-01-30 12:34:24"}
+{"level":"info","message":"Evaluation is done - triggered updateTestResult/:email API - posted the result in MongoDB database","timestamp":"2024-01-30 12:34:44"}
+{"level":"info","message":"Evaluation is done - triggered updateTestResult/:email API - posted the result in MongoDB database","timestamp":"2024-01-30 12:43:04"}

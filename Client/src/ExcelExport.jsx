@@ -17,7 +17,7 @@ const ExcelExport = ({ data }) => {
     };
     return (
         <div>
-            <button onClick={handleExport}>Export to Excel</button>
+            <button style={{backgroundColor: '#E4E6EB'}} onClick={handleExport}>Export to Excel</button>
         </div>
     );
 };

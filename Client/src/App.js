@@ -21,6 +21,7 @@ import AddQuestions from "./AddQuestions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PendingApprovals from "./PendingApprovals";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 export const store = createContext();
 
 function App() {

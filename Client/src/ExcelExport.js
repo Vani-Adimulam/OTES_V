@@ -32,7 +32,7 @@ const ExcelExport = ({ data }) => {
 
     return (
         <div>
-            <button  className="btn" style={ {backgroundColor: "#0CCF4F", fontFamily: "fantasy",marginBottom:"5px",color:"#DDE2E8"}} onClick={handleExport}>Export to Excel</button>
+            <button  className="btn" style={ { fontFamily: "Roboto",marginBottom:"5px", marginRight: '35px', backgroundColor: '#E4E6EB'}} onClick={handleExport}>Export to Excel</button>
         </div>
     );
 };

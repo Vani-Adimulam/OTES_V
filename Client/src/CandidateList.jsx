@@ -190,17 +190,17 @@ const CandidateList = () => {
     <>
       <center>
         <h1 style={{ marginTop: "100px" }}>Candidates</h1>
-        <div style={{ display: "flex", justifyContent: "space-evenly", marginBottom: "5px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", paddingLeft: '50px'}}>
           <button
             className="btn"
             style={{ backgroundColor: "#E4E6EB", fontFamily: "fantasy" }}
             onClick={handleProfileClick}
           >
-            Back To Dashboard
+            <i class="fa-solid fa-arrow-left-long"></i>
           </button>
-        </div>
-        <div>
-          <ExcelExport data={candidates} />
+          <div >
+            <ExcelExport style={{ backgroundColor: "#E4E6EB", fontFamily: "fantasy" }} data={candidates} />
+          </div>
         </div>
         <FormControl
           type="text"
@@ -220,6 +220,7 @@ const CandidateList = () => {
           <Table striped bordered hover>
             <thead style={{ fontSize: "15px" }}>
               <tr>
+                <th>S.No</th>
                 <th onClick={() => handleSort("name")}>
                   Name {getSortIcon("name")}
                 </th>
@@ -227,24 +228,25 @@ const CandidateList = () => {
                   Email {getSortIcon("email")}
                 </th>
                 <th onClick={() => handleSort("testStatus")}>Test Status {getSortIcon("testStatus")}</th>
-                <th>Edit Candidate Data</th>
+                <th>Edit</th>
                 <th>Evaluate</th>
                 <th>Result</th>
                 <th>Total Marks</th>
               </tr>
             </thead>
             <tbody style={{ fontSize: "15px" }}>
-              {filteredCandidates.map((candidate) => (
+              {filteredCandidates.map((candidate,index) => (
                 <tr key={candidate._id}>
+                  <td>{index+1}</td>
                   <td>{candidate.name}</td>
                   <td>{candidate.email}</td>
                   <td>{candidate.testStatus}</td>
                   <td>
-                    <Button
-                      style={{
-                        backgroundColor: "#58FEDB",
-                        borderColor: "#dee2e6",
-                      }}
+                    <Button variant="light"
+                      // style={{
+                      //   backgroundColor: "light",
+                      //   borderColor: "",
+                      // }}
                       onClick={() => handleEditModalShow(candidate)}
                     >
                       <img src={pen} alt="edit" />
