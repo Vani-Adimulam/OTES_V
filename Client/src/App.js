@@ -21,9 +21,13 @@ import AddQuestions from "./AddQuestions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PendingApprovals from "./PendingApprovals";
+<<<<<<< HEAD
+import '@fortawesome/fontawesome-free/css/all.min.css';
+=======
 import ForgotPassword from "./ForgotPassword";
 import VerifyOTP from "./VerifyOTP";
 import ResetPassword from "./ResetPassword";
+>>>>>>> af024e971f197a6dfb465387c6b2f66469067c9e
 export const store = createContext();
 
 function App() {

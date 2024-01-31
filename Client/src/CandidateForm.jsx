@@ -102,16 +102,19 @@ const CandidateForm = () => {
         >
           <div className="card-body">
             <h2 className="card-title text-center mb-4">Add Candidate</h2>
-            <button
-            className="btn"
-          style={{ backgroundColor: "#6BD8BA",fontFamily:"fantasy"}}
-          onClick={handleProfileClick}
-        >
-          Back To Dashboard
-        </button>
+            <div style={{display: 'flex', flexDirection: 'start'}}>
+              <button
+              className="btn"
+              style={{ backgroundColor: "",fontFamily:"fantasy"}}
+              onClick={handleProfileClick}
+              >
+                <i class="fa-solid fa-arrow-left-long"></i>
+             </button>
+            </div>
+            <br/>
             <form onSubmit={submitHandler}>
               <div className="form-group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name" style={{display: 'flex', flexDirection: 'start', fontweight: '12'}}>Name</label>
                 <input
                   type="text"
                   className="form-control"
@@ -122,8 +125,9 @@ const CandidateForm = () => {
                   required
                 />
               </div>
+              <br/>
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email" style={{display: 'flex', flexDirection: 'start', fontFamily: ''}}>Email</label>
                 <input
                   type="email"
                   className="form-control"
@@ -133,8 +137,9 @@ const CandidateForm = () => {
                   onChange={changeEmailHandler}
                 />
               </div>
+              <br/>
               <div className="form-group">
-                <label htmlFor="area">Area</label>
+                <label htmlFor="area" style={{display: 'flex', flexDirection: 'start', fontFamily: ''}}>Area</label>
                 <select
                   className="form-control"
                   id="area"
@@ -191,6 +196,7 @@ const CandidateForm = () => {
                   onChange={changeParagraphCountHandler}
                 />
               </div> */}
+              <br/>
               <div className="form-group">
                 <button type="submit" className="btn btn-dark mt-2">
                   ADD

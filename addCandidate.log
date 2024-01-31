@@ -68,3 +68,5 @@
 {"level":"error","message":"error in adding candidate","timestamp":"2023-08-25 14:31:32"}
 {"level":"info","message":"request sent to MongoDB database checked with existing data, it is a new data so,added a candidate helo@gmail.com","timestamp":"2023-08-25 14:42:40"}
 {"level":"info","message":"request sent to MongoDB database checked with existing data, it is a new data so,added a candidate test@gmail.com","timestamp":"2023-08-31 10:11:48"}
+{"level":"info","message":"request sent to MongoDB database checked with existing data, it is a new data so,added a candidate vani@gmail.com","timestamp":"2024-01-30 12:30:59"}
+{"level":"info","message":"request sent to MongoDB database checked with existing data, it is a new data so,added a candidate te@gmail.com","timestamp":"2024-01-30 12:37:02"}

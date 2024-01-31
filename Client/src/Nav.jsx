@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import logo from "./assets/p2f-semi-logo-img.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 const Nav = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     JSON.parse(localStorage.getItem("isLoggedIn")) || false
@@ -24,8 +24,8 @@ const Nav = () => {
   }, [isLoggedIn, showHomeLink]);
   return (
     <div
-      className="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed fixed-top"
-      style={{ justifyContent: "space-between" }}
+      className="navbar navbar-expand-lg navbar-fixed fixed-top"
+      style={{ justifyContent: "space-between", backgroundColor: '#ffffff', margin: '0'}}
     >
       {/* <img src={logo} alt="" style={{ height: "40px", marginLeft: "15px" }} /> */}
       <span
@@ -34,7 +34,7 @@ const Nav = () => {
           fontSize: "40px",
           fontWeight: "650",
           backgroundImage:
-            "linear-gradient(90deg, rgba(79,199,44,1) 8%, rgba(234,231,15,1) 24%, rgba(255,0,22,1) 49%)",
+            "linear-gradient(to right, blue, orange)",
           WebkitBackgroundClip: "text",
           MozBackgroundClip: "text",
           backgroundClip: "text",
@@ -46,9 +46,9 @@ const Nav = () => {
         Online Assessment Test
       </span>
       <div className="d-flex">
-        {showHomeLink && (
+        {!showHomeLink && (
           <Link to="/" className="navbar-brand" onClick={handleHomeClick}>
-            <FontAwesomeIcon icon={faHouse} />
+            {/* <FontAwesomeIcon icon={faHouse} /> */}
             <span>Home</span>
           </Link>
         )}
@@ -58,10 +58,11 @@ const Nav = () => {
             className="navbar-brand"
             onClick={handleLogInClick}
           >
-            <FontAwesomeIcon icon={faRightToBracket} />
+            {/* <FontAwesomeIcon icon={faRightToBracket} /> */}
             <span>Login</span>
           </Link>
         )}
+        {isLoggedIn && showHomeLink }
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { Container, Row, Col, Form, Button, Modal } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import DOMPurify from "dompurify";
-import { BsTrash } from "react-icons/bs"; // Import trash icon from react-icons
+// import { BsTrash } from "react-icons/bs"; // Import trash icon from react-icons
 import "./getAllMCQQuestions.css";
 import { BASE_URL } from "./Service/helper";
 import { store } from "./App";
@@ -138,11 +138,7 @@ const AllMCQQuestions = () => {
       </Form.Group>
       <div
         style={{
-          marginTop: "30px",
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
+          marginTop: "30px",display: 'flex', flexDirection: 'start'}}>
         <Button
           style={{
             backgroundColor: "#6BD8BA",
@@ -151,7 +147,7 @@ const AllMCQQuestions = () => {
           }}
           onClick={handleProfileClick}
         >
-          Back To Dashboard
+          <i class="fa-solid fa-arrow-left-long"></i>
         </Button>
       </div>
 
@@ -231,10 +227,10 @@ const AllMCQQuestions = () => {
               <div className="card-footer d-flex justify-content-between">
                 <small className="text-muted">Area: {question.area}</small>
                 <button
-                  className="delete-question-button"
+                  className="delete-question-button" style={{borderRadius: '6px'}}
                   onClick={() => deleteQuestion(question._id)}
                 >
-                  <BsTrash className="trash-icon" />
+                  <i class="fa-solid fa-trash"></i>
                 </button>
               </div>
             </div>
