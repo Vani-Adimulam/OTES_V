@@ -190,17 +190,17 @@ const CandidateList = () => {
     <>
       <center>
         <h1 style={{ marginTop: "100px" }}>Candidates</h1>
-        <div style={{ display: "flex", justifyContent: "space-between", paddingLeft: '50px'}}>
+        <div style={{ display: "flex", justifyContent: "space-evenly", marginBottom: "5px" }}>
           <button
             className="btn"
             style={{ backgroundColor: "#E4E6EB", fontFamily: "fantasy" }}
             onClick={handleProfileClick}
           >
-            <i class="fa-solid fa-arrow-left-long"></i>
+            Back To Dashboard
           </button>
-          <div >
-            <ExcelExport style={{ backgroundColor: "#E4E6EB", fontFamily: "fantasy" }} data={candidates} />
           </div>
+        <div>
+          <ExcelExport data={candidates} />
         </div>
         <FormControl
           type="text"
@@ -228,7 +228,7 @@ const CandidateList = () => {
                   Email {getSortIcon("email")}
                 </th>
                 <th onClick={() => handleSort("testStatus")}>Test Status {getSortIcon("testStatus")}</th>
-                <th>Edit</th>
+                <th>Edit Candidate Data</th>
                 <th>Evaluate</th>
                 <th>Result</th>
                 <th>Total Marks</th>
@@ -242,11 +242,11 @@ const CandidateList = () => {
                   <td>{candidate.email}</td>
                   <td>{candidate.testStatus}</td>
                   <td>
-                    <Button variant="light"
-                      // style={{
-                      //   backgroundColor: "light",
-                      //   borderColor: "",
-                      // }}
+                    <Button 
+                      style={{
+                        backgroundColor: "#58FEDB",
+                        borderColor: "#dee2e6",
+                      }}
                       onClick={() => handleEditModalShow(candidate)}
                     >
                       <img src={pen} alt="edit" />

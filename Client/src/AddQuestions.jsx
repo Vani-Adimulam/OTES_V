@@ -32,18 +32,9 @@ const AddQuestions = () => {
 
   return (
     <Container className="mt-5" >
-      <Row className="" >
-          <div style={{display: 'flex', justifyContent: 'start',marginTop: '50px'}}>
-            <button
-              className="btn"
-              onClick={handleProfileClick}
-              style={{ backgroundColor: "#6BD8BA", fontFamily: "fantasy", display: 'flex', justifyContent: 'start' }}
-            >
-              <i class="fa-solid fa-arrow-left-long"></i>
-            </button>
-          </div>
+      <Row className="justify-content-between" >
         <Col lg="9">
-          <Form style={{ marginTop: "40px" }}>
+          <Form style={{ marginTop: "70px" }}>
             <Form.Group controlId="questionTypeSelect">
               <Form.Label style={{ fontFamily: "revert-layer", fontWeight: "bold" }}>
                 Please Select Your Question Type
@@ -64,7 +55,15 @@ const AddQuestions = () => {
           {selectedQuestionType === "TEXT" && <AddParagraphQuestionForm />}
           {selectedQuestionType === "MCQ" && <McqForm />}
         </Col>
-        
+        <Col lg="3" className="text-right mt-5">
+          <button
+            className="btn"
+            onClick={handleProfileClick}
+            style={{ backgroundColor: "#6BD8BA", fontFamily: "fantasy" }}
+          >
+            Back To Dashboard
+          </button>
+        </Col>  
       </Row>
     </Container>
   );

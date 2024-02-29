@@ -138,7 +138,11 @@ const AllMCQQuestions = () => {
       </Form.Group>
       <div
         style={{
-          marginTop: "30px",display: 'flex', flexDirection: 'start'}}>
+          marginTop: "30px",
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      >
         <Button
           style={{
             backgroundColor: "#6BD8BA",
@@ -147,7 +151,7 @@ const AllMCQQuestions = () => {
           }}
           onClick={handleProfileClick}
         >
-          <i class="fa-solid fa-arrow-left-long"></i>
+          Back To Dashboard
         </Button>
       </div>
 
@@ -227,7 +231,7 @@ const AllMCQQuestions = () => {
               <div className="card-footer d-flex justify-content-between">
                 <small className="text-muted">Area: {question.area}</small>
                 <button
-                  className="delete-question-button" style={{borderRadius: '6px'}}
+                  className="delete-question-button" 
                   onClick={() => deleteQuestion(question._id)}
                 >
                   <i class="fa-solid fa-trash"></i>

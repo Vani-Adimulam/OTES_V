@@ -5,6 +5,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { store } from "./App";
 import { BASE_URL } from "./Service/helper";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const CandidateForm = () => {
   const location = useLocation();
@@ -102,19 +104,16 @@ const CandidateForm = () => {
         >
           <div className="card-body">
             <h2 className="card-title text-center mb-4">Add Candidate</h2>
-            <div style={{display: 'flex', flexDirection: 'start'}}>
-              <button
-              className="btn"
-              style={{ backgroundColor: "",fontFamily:"fantasy"}}
+            <button
+                className="btn"
+              style={{ backgroundColor: "#6BD8BA",fontFamily:"fantasy"}}
               onClick={handleProfileClick}
-              >
-                <i class="fa-solid fa-arrow-left-long"></i>
-             </button>
-            </div>
-            <br/>
+            >
+              Back To Dashboard
+            </button>
             <form onSubmit={submitHandler}>
               <div className="form-group">
-                <label htmlFor="name" style={{display: 'flex', flexDirection: 'start', fontweight: '12'}}>Name</label>
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   className="form-control"
@@ -125,9 +124,8 @@ const CandidateForm = () => {
                   required
                 />
               </div>
-              <br/>
               <div className="form-group">
-                <label htmlFor="email" style={{display: 'flex', flexDirection: 'start', fontFamily: ''}}>Email</label>
+              <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   className="form-control"
@@ -137,9 +135,8 @@ const CandidateForm = () => {
                   onChange={changeEmailHandler}
                 />
               </div>
-              <br/>
               <div className="form-group">
-                <label htmlFor="area" style={{display: 'flex', flexDirection: 'start', fontFamily: ''}}>Area</label>
+                <label htmlFor="area">Area</label>
                 <select
                   className="form-control"
                   id="area"
@@ -196,7 +193,6 @@ const CandidateForm = () => {
                   onChange={changeParagraphCountHandler}
                 />
               </div> */}
-              <br/>
               <div className="form-group">
                 <button type="submit" className="btn btn-dark mt-2">
                   ADD

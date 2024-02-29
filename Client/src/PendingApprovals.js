@@ -63,9 +63,9 @@ const PendingApprovals = () => {
   return (
     <div style={{ marginTop: '90px' }}>
       <div className='container border border-2 rounded'>
-        <div className='d-flex ' style={{display: 'flex', flexDirection: 'start', marginTop: '10px'}}>
-                <button className='btn btn-warning ' style={{display: 'flex', flexDirection: 'start', backgroundColor: "#6BD8BA"}} onClick={handleProfileClick} >
-                <i class="fa-solid fa-arrow-left-long"></i>
+      <div className='d-flex flex-row-reverse'>
+                <button className='btn btn-warning ' onClick={handleProfileClick} >
+                    Back To Dashboard
                 </button>
         </div>
         <h3 className='text-center p-2'>Pending Approvals</h3>
@@ -87,7 +87,7 @@ const PendingApprovals = () => {
                 <div style={{ position: 'relative' }}>
                 <input
                     type='text'
-                    placeholder='Search '
+                    placeholder='Search by name or email'
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                     onKeyUp={handleSearch}
@@ -101,7 +101,7 @@ const PendingApprovals = () => {
                     className='fa fa-search'
                     style={{
                     position: 'absolute',
-                    paddingTop:"8px",
+                    paddingBottom:"2px",
                     left: '10px', // Adjust the position of the icon
                     top: '40%', // Center the icon vertically
                     transform: 'translateY(-50%)', // Center the icon vertically
@@ -110,7 +110,7 @@ const PendingApprovals = () => {
                 </div>
 
               </div>
-              <table border={1} className='table table-hover' style={{marginTop: '10px'}}>
+              <table border={1} className='table table-hover'>
                 <thead className='bg-info'>
                   <tr>
                     <th>S.No</th>

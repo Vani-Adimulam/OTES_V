@@ -12,20 +12,19 @@ const Home = () => {
     <div >
       <Row className="justify-content-center">
         <Col md={8} className="text-center" style={{marginTop:"100px"}}>
-          <h1 className="display">Welcome to Online Assessment</h1>
-          <br/>
-          <h5>
+        <h1 className="display-1">Welcome to Online Assessment</h1>
+          <h6>
             Are you an individual looking to test your own knowledge? We've got
             you covered.
-          </h5>
-          <h5>
+          </h6>
+          <h6>
             Whether you're a student, a professional, or a lifelong learner,
             join us today and start your journey towards success!
-          </h5>
+          </h6>
         </Col>
       </Row>
 
-      <Row className="justify-content-center mt-3">
+      <Row className="justify-content-center mt-5">
         <Col md={8}>
           <p className="lead">
             Driven by technology disruptions and a raging pandemic, global
@@ -52,10 +51,10 @@ const Home = () => {
 
       <Row className="justify-content-center mt-4">
         <Col md={6}>
-          <Image  src={info} fluid style={{marginLeft:"150px"}}/>
+          <Image  src={info} fluid style={{marginLeft:"100px"}}/>
         </Col>
         <Col md={6}>
-          <Image src={info2} fluid style={{marginRight:"100px"}}/>
+          <Image src={info2} fluid style={{marginRight:"70px"}}/>
         </Col>
       </Row>
 
