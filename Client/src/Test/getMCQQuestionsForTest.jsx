@@ -6,6 +6,7 @@ import DOMPurify from 'dompurify';
 
 const getMCQQuestionsForTest = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const [isLoading, setIsLoading] = useState(false);
   const [mcqquestions, setMCQQuestions] = useState(
     JSON.parse(localStorage.getItem('mcqquestions')) || []
@@ -93,10 +94,12 @@ const getMCQQuestionsForTest = () => {
     event.returnValue = '';
   }
   async function handleNextClick() {
+    setLoading(true)
     const missingAnswers = mcqquestions.some((question) => !selectedAnswers[question._id]);
 
     if (missingAnswers) {
       alert('Please answer all questions before continuing.');
+      setLoading(false)
     } else {
       const selectedAnswers = JSON.parse(localStorage.getItem('selectedAnswers'));
       const requestBody = {
@@ -112,7 +115,7 @@ const getMCQQuestionsForTest = () => {
         .catch((error) => {
           console.log(error);
         });
-
+        setIsLoading(false)
       const requestBody2 = {
         email,
         testStatus: 'Test Taken',
@@ -157,7 +160,7 @@ const getMCQQuestionsForTest = () => {
 
   return (
     <div style={{ backgroundColor: '#BDCCDA' }}>
-      <h2 style={{ marginTop: '90px' }}>MCQ Questions</h2>
+      <h2 style={{ marginTop: '90px', marginLeft: '20px' }}>MCQ Questions</h2>
       <div className="mcq-questions-list">
         {mcqquestions.map((question) => (
           <div key={question._id} className="card" style={{ width: '100%', marginTop: '10px' }}>
@@ -219,9 +222,17 @@ const getMCQQuestionsForTest = () => {
       </div>
       <center>
         <div>
-          <button className="btn" style={{ marginTop: '3px', backgroundColor: '#FFFFFF' }} onClick={handleNextClick}>
+             {
+                loading ? <button style={{ marginTop: '3px', backgroundColor: '#FF7619', borderRadius: '8px', margin: '10px', padding: '5px' }} >
+                Please wait ...
+              </button> :
+              <button style={{ marginTop: '3px', backgroundColor: '#008080', borderRadius: '8px', margin: '10px', padding: '5px' }} type="submit" onClick={handleNextClick}>
+                Submit Test
+              </button>
+              }
+          {/* <button className="btn" style={{ marginTop: '3px', backgroundColor: '#FFFFFF' }} onClick={handleNextClick}>
             Submit Your Answers
-          </button>
+          </button> */}
         </div>
       </center>
     </div>

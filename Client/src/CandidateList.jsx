@@ -7,9 +7,10 @@ import assessment from "./assets/assessment.png";
 import { faSort, faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toast } from 'react-toastify'
-import { ATS_URL, BASE_URL } from "./Service/helper";
+import { BASE_URL } from "./Service/helper";
 import ExcelExport from "./ExcelExport";
 import { store } from "./App"
+
 
 const CandidateList = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const CandidateList = () => {
   const navigate = useNavigate();
   const [token, setToken] = useContext(store) || localStorage.getItem("token")  
   const eval_email = location.state?.email;
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -92,14 +94,20 @@ const CandidateList = () => {
   const handleEditSubmit = async (event) => {
     event.preventDefault();
     if (editCandidate.result === "On Hold") {
+      setLoading(true)
       try {
         await axios.post(`${BASE_URL}/updateTestResult/${editCandidate.email}`, { result: result })
-        await axios.put(`${ATS_URL}/appicant/update/comments`, { email: editCandidate.email, comment: `The applicant's test result has been updated from On Hold to <b> ${result} </b>`, commentBy: "TES System", cRound: "Online Assessment Test", nextRound: "Veera", status: "Hiring Manager" })
+        toast.success("Updated Candidate Successfully.")
+        // await axios.put(`${ATS_URL}/appicant/update/comments`, { email: editCandidate.email, comment: `The applicant's test result has been updated from On Hold to <b> ${result} </b>`, commentBy: "TES System", cRound: "Online Assessment Test", nextRound: "Veera", status: "Hiring Manager" })
+        setLoading(false)
         window.location.reload()
+
       } catch (err) {
+        setLoading(false)
         console.log(err.message)
         alert('Failed to update the result. Please update the result again')
       }
+
     }
     try {
       await axios.put(`${BASE_URL}/edit/${editCandidate._id}`, {
@@ -402,9 +410,17 @@ const CandidateList = () => {
             <Button variant="secondary" onClick={handleEditModalClose}>
               Close
             </Button>
-            <Button variant="primary" type="submit">
+            {
+                loading ? <button style={{ marginTop: '3px', backgroundColor: '#FF7619', borderRadius: '8px', margin: '10px', padding: '5px' }} >
+                Saving changes...
+              </button> :
+              <button style={{ marginTop: '3px', backgroundColor: '#008080', borderRadius: '8px', margin: '10px', padding: '5px' }} type="submit" >
+                Save Changes
+              </button>
+              }
+            {/* <Button variant="primary" type="submit">
               Save Changes
-            </Button>
+            </Button> */}
           </Modal.Footer>
         </Form>
       </Modal>
