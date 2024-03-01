@@ -14,6 +14,7 @@ const CandidateForm = () => {
   const [email, setEmail] = useState("");
   const [area, setArea] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
   const [token, setToken] = useContext(store) || localStorage.getItem("token")
   const eval_email = location.state?.email;
@@ -46,12 +47,12 @@ const CandidateForm = () => {
   };
 
   const handleProfileClick = () => {
-    navigate("/myprofiledashboard", { state : { email : eval_email }});
+    navigate("/myprofiledashboard", { state: { email: eval_email } });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault();
-
+    setIsLoading(true)
     // Trim the input values to remove leading and trailing spaces
     const trimmedName = name.trim();
     const trimmedEmail = email.trim();
@@ -60,16 +61,18 @@ const CandidateForm = () => {
     // Check if any of the trimmed input values are empty strings
     if (trimmedName === "" || trimmedEmail === "" || trimmedArea === "") {
       setErrorMessage("Invalid input. Please fill in all fields.");
+      setIsLoading(false)
       return;
     }
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(trimmedEmail)) {
       setErrorMessage("Invalid email address!");
+      setIsLoading(false)
       return;
     }
 
-    axios
+    await axios
       .post(`${BASE_URL}/register`, {
         name: trimmedName,
         email: trimmedEmail,
@@ -80,18 +83,21 @@ const CandidateForm = () => {
         },
       })
       .then((res) => {
-        toast.success(res.data);
+        console.log(res.data);
+        toast.success(`${trimmedName} added successfully`)
+        setIsLoading(false)
         resetForm();
       })
       .catch((error) => {
         console.log(error);
+        setIsLoading(false)
         setErrorMessage("Error occurred while registering");
       });
   };
-  
+
   return (
     <center>
-      <div className="container" style={{ marginTop: "90px"}}>
+      <div className="container" style={{ marginTop: "90px" }}>
         <div
           className="card mt-5"
           style={{
@@ -105,8 +111,8 @@ const CandidateForm = () => {
           <div className="card-body">
             <h2 className="card-title text-center mb-4">Add Candidate</h2>
             <button
-                className="btn"
-              style={{ backgroundColor: "#6BD8BA",fontFamily:"fantasy"}}
+              className="btn"
+              style={{ backgroundColor: "#6BD8BA", fontFamily: "fantasy" }}
               onClick={handleProfileClick}
             >
               Back To Dashboard
@@ -125,7 +131,7 @@ const CandidateForm = () => {
                 />
               </div>
               <div className="form-group">
-              <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   className="form-control"
@@ -139,20 +145,52 @@ const CandidateForm = () => {
                 <label htmlFor="area">Area</label>
                 <select
                   className="form-control"
+                  as="select"
                   id="area"
                   value={area}
                   onChange={changeAreaHandler}
                 >
-                  <option value="">Select Area</option>
-                  <option value="SOFTWARE">Software</option>
-                  <option value="EMBEDDED">Embedded</option>
-                  <option value="VLSI">VLSI</option>
-                  <option value="VLSI_FRESHER">VLSI_FRESHER</option>
+                  <option value="">---Select area for online test---</option>
+                  <option value="VLSI_FRESHER_1">VLSI_FRESHER_1</option>
+                  <option value="VLSI_FRESHER_2">VLSI_FRESHER_2</option>
+                  <option value="VLSI_FRESHER_3">VLSI_FRESHER_3</option>
+                  <option value="VLSI_FRESHER_4">VLSI_FRESHER_4</option>
+                  <option value="VLSI">VLSI_EXPERIENCE</option>
 
                 </select>
               </div>
 
+              <div className="form-group text-center">
+                                {
+                                    isLoading ? <button type="submit" disabled className="btn btn-warning mt-2" >
+                                        Please Wait...
+                                    </button> : <button type="submit" className="btn btn-dark mt-2">
+                                        Add Candidate
+                                    </button>
+                                }
+                            </div>
               {/* <div className="form-group">
+                <button type="submit" className="btn btn-dark mt-2">
+                  Add Candidate
+                </button>
+              </div> */}
+              {errorMessage && (
+                <div className="alert alert-danger mt-3" role="alert">
+                  {errorMessage}
+                </div>
+              )}
+            </form>
+          </div>
+        </div>
+      </div>
+    </center>
+  );
+};
+
+export default CandidateForm;
+
+
+{/* <div className="form-group">
                 <label htmlFor="mcqCount">MCQ Count</label>
                 <input
                   type="number"
@@ -193,22 +231,3 @@ const CandidateForm = () => {
                   onChange={changeParagraphCountHandler}
                 />
               </div> */}
-              <div className="form-group">
-                <button type="submit" className="btn btn-dark mt-2">
-                  ADD
-                </button>
-              </div>
-              {errorMessage && (
-                <div className="alert alert-danger mt-3" role="alert">
-                  {errorMessage}
-                </div>
-              )}
-            </form>
-          </div>
-        </div>
-      </div>
-    </center>
-  );
-};
-
-export default CandidateForm;
