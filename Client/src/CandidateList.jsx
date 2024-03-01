@@ -93,13 +93,14 @@ const CandidateList = () => {
 
   const handleEditSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true)
     if (editCandidate.result === "On Hold") {
-      setLoading(true)
       try {
         await axios.post(`${BASE_URL}/updateTestResult/${editCandidate.email}`, { result: result })
         toast.success("Updated Candidate Successfully.")
         // await axios.put(`${ATS_URL}/appicant/update/comments`, { email: editCandidate.email, comment: `The applicant's test result has been updated from On Hold to <b> ${result} </b>`, commentBy: "TES System", cRound: "Online Assessment Test", nextRound: "Veera", status: "Hiring Manager" })
         setLoading(false)
+        navigate('/CandidateList')
         window.location.reload()
 
       } catch (err) {
@@ -131,9 +132,11 @@ const CandidateList = () => {
       updatedCandidates[index].codeCount = editCandidate.codeCount;
       updatedCandidates[index].paragraphCount = editCandidate.paragraphCount;
       setCandidates(updatedCandidates);
+      setLoading(false)
       setShowEditModal(false);
       window.location.reload();
     } catch (error) {
+      setLoading(false)
       console.log(error);
     }
   };

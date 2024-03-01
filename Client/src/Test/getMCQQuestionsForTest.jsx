@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { ATS_URL, BASE_URL } from '../Service/helper';
+import { BASE_URL } from '../Service/helper';
 import DOMPurify from 'dompurify';
+import {toast} from 'react-toastify';
+
 
 const getMCQQuestionsForTest = () => {
   const navigate = useNavigate();
@@ -114,8 +116,10 @@ const getMCQQuestionsForTest = () => {
         })
         .catch((error) => {
           console.log(error);
+          toast.warn('Failed to update Test Results.')
+          setIsLoading(false)
+
         });
-        setIsLoading(false)
       const requestBody2 = {
         email,
         testStatus: 'Test Taken',
@@ -127,18 +131,21 @@ const getMCQQuestionsForTest = () => {
           console.log(response);
         })
         .catch((error) => {
+          setLoading(false)
+          toast.warn('Failed to update Test Status')
           console.log(error);
         });
 
       ///Post the data to the Applicant Tracking System when applicant completed the test
-      try {
-        await axios.put(`${ATS_URL}/appicant/update/comments`, { email: email, comment: `The applicant has successfully completed the test. To proceed with the evaluation, please click the following link: <a href="${window.location.origin}" target="_blank">Click Here</a>`, commentBy: "TES System", cRound: "Online Assessment Test", nextRound: "Veera", status: "Hiring Manager" })
-          .then(res => console.log(res))
-      } catch (err) {
-        console.log(err.message)
-      }
+      // try {
+      //   await axios.put(`${ATS_URL}/appicant/update/comments`, { email: email, comment: `The applicant has successfully completed the test. To proceed with the evaluation, please click the following link: <a href="${window.location.origin}" target="_blank">Click Here</a>`, commentBy: "TES System", cRound: "Online Assessment Test", nextRound: "Veera", status: "Hiring Manager" })
+      //     .then(res => console.log(res))
+      // } catch (err) {
+      //   console.log(err.message)
+      // }
 
       localStorage.clear();
+      setLoading(false)
       navigate('../Results');
     }
   }
