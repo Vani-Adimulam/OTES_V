@@ -60,7 +60,8 @@ const AllMCQQuestions = () => {
 
         setQuestions(questionsWithImage);
         setFilteredQuestions(questionsWithImage);
-        setAreas([...new Set(questionsWithImage.map((question) => question.area))]);
+        // setAreas([...new Set(questionsWithImage.map((question) => question.area))]);
+        setAreas(['VLSI_FRESHER_1', 'VLSI_FRESHER_2', 'VLSI_FRESHER_3', 'VLSI_EXPERIENCE'])
       })
       .catch((error) => {
         console.log(error);
@@ -129,7 +130,7 @@ const AllMCQQuestions = () => {
           >
             <option value="">Select an area</option>
             {areas.map((area, index) => (
-              <option key={index} value={area}>
+              <option key={index} value={area=="VLSI_EXPERIENCE" ? 'VLSI' : area}>
                 {area}
               </option>
             ))}
