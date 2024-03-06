@@ -391,10 +391,22 @@ const getMCQQuestionsForTest = () => {
   async function handleNextClick() {
     setLoading(true);
 
+    const selectedAnswers = JSON.parse(localStorage.getItem('selectedAnswers'));
+    console.log(selectedAnswers);
+    console.log(mcqquestions);
+      
+    mcqquestions.forEach(question => {
+      if (!(question._id in selectedAnswers)) {
+        selectedAnswers[question._id] = '';
+        console.log(question._id);
+      }
+    });
+    
+    console.log(selectedAnswers);
     const requestBody = {
       email,
       selectedAnswers,
-      mcqquestions, // send the entire list of questions (both answered and unanswered)
+      // mcqquestions, // send the entire list of questions (both answered and unanswered)
     };
 
     axios
@@ -466,9 +478,9 @@ const getMCQQuestionsForTest = () => {
     const missingAnswers = mcqquestions.some((question) => !selectedAnswers[question._id]);
     if (secondsLeft === 30 && missingAnswers >=1) {
       // handleNextClick();
-      toast.warn("30 sec left, Answer all the questions.")
+      alert("30 sec left, Answer all the questions.")
     }else if (secondsLeft === 30) {
-      toast.warn("30 sec left")
+      alert("30 sec left")
     }
     else if (secondsLeft === 0) {
       handleNextClick();

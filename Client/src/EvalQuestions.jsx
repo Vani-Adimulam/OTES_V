@@ -197,7 +197,10 @@ const EvalQuestions = () => {
       <ol style={{ paddingLeft: "0", marginTop: "30px" }}>
         {mcqQuestions.map((question) => {
           const selectedAnswer = testResults[0].selectedAnswers[question._id];
+          console.log(selectedAnswer)
           const isCorrect = selectedAnswer === question.correct_choice;
+          const isNotAnswered = testResults[0].selectedAnswers[question._id];
+
           if (isCorrect) {
             mcqScore++;
             correctAnswers++;
@@ -258,7 +261,7 @@ const EvalQuestions = () => {
                     <label className="form-check-label">{question.choice4}</label>
                   </div>
                   <span id={`symbol-${question._id}`} className="symbol">
-                    {isCorrect ? (
+                    {isNotAnswered !== "" ? isCorrect ? (
                       <span
                         style={{
                           color: "#28a745",
@@ -277,6 +280,16 @@ const EvalQuestions = () => {
                         }}
                       >
                         &#10008; Wrong
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          color: "#e08e36",
+                          fontWeight: "bold",
+                          marginRight: "5px",
+                        }}
+                      >
+                        &#8709; Not Answered
                       </span>
                     )}
                   </span>
