@@ -2,8 +2,12 @@
 
 # dependencies
 node_modules
+
+Client/node_modules
 /.pnp
 .pnp.js
+
+*.log
 
 # testing
 /coverage
